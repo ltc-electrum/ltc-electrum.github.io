@@ -1,0 +1,33 @@
+@media (max-width: 768px) {
+  .btn-responsive {
+    padding:2px 4px;
+    font-size:11px;
+    line-height: 1;
+    border-radius:3px;
+  }
+  .imgChanger{
+    height: 60px;
+  }
+}
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:12px;
+    line-height: 1.2;}
+  .imgChanger{
+    height: 90px;
+  }
+}
+.release-table td:first-child {
+  width: 55%;
+}
+.release-table td {
+  vertical-align: middle !important;
+  padding: .5em !important;
+}
+.release-table th {
+  vertical-align: middle !important;
+  font-weight: normal;
+  font-size: 140%;
+  padding: .5em .8em !important;
+}

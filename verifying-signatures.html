@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Electrum Litecoin Wallet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+pre { font-size: 90%; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>How to verify the digital signatures of the files you download</h1>
+
+<p><strong>Why check signatures?</strong></p>
+
+<p>Checksums such as MD5 and SHA-256 help you answer the question “Did I download this file correctly from whoever sent it to me?” They do a good job at making sure you didn't have any random errors in your download, but they don't help you figure out whether you were downloading it from an attacker. The better question to answer is: “Is this file that I just downloaded really coming from the project developers, or has it been tampered with?” That's what GPG signatures are for.</p>
+
+<p><strong>Download accompanying signature file (.asc)</strong></p>
+
+<p>Signature files are available for each Electrum-LTC package. When you download a package, make sure you also download its accompanying signature by clicking on the “signature” link next to it on the <a href="index.html#downloads">download page</a>.<br>For example, to verify the file <code>Electrum-LTC-2.9.3.1.tar.gz</code> you will need the signature file <code>Electrum-LTC-2.9.3.1.tar.gz<strong>.asc</strong></code>.</p>
+
+<p>Use the below instructions if you're using Linux and have GnuPG installed. The <a href="https://www.torproject.org/docs/verifying-signatures.html.en">Tor Project</a> provides more detailed instructions for Windows and OS X. The signature key to use for Electrum-LTC is <code>0x6fc4c9f7f1be8fea</code>.</p>
+
+<p><strong>Import signing keys from keyserver</strong></p>
+
+<p>Type this in a terminal:</p>
+
+<pre>gpg --keyserver keyserver.ubuntu.com --recv-keys 0x6fc4c9f7f1be8fea 0xfe3348877809386c 0x3b2a6315cd51a673</pre>
+
+<p>You should see something similar to this (the exact output depends on your GnuPG version):</p>
+
+<pre>    gpg: key 6FC4C9F7F1BE8FEA: public key &quot;pooler &lt;pooler@litecoinpool.org&gt;&quot; imported
+    gpg: key FE3348877809386C: public key &quot;Adrian Gallagher &lt;thrasher@addictionsoftware.com&gt;&quot; imported
+    gpg: key 3B2A6315CD51A673: &quot;Loshan T (A.K.A. losh11) &lt;loshan1212@gmail.com&gt;&quot; imported
+    gpg: Total number processed: 3
+    gpg:               imported: 3
+</pre>
+
+<p><strong>Verify that the fingerprints are correct</strong></p>
+
+<pre>gpg --fingerprint 0x6fc4c9f7f1be8fea 0xfe3348877809386c 0x3b2a6315cd51a673</pre>
+
+<p>You should see:</p>
+
+<pre>    pub   rsa2048 2013-07-21 [SC]
+          CAE1 092A D355 3FFD 21C0  5DE3 6FC4 C9F7 F1BE 8FEA
+    uid           [ unknown] pooler &lt;pooler@litecoinpool.org&gt;
+    sub   rsa2048 2013-07-21 [E]
+
+    pub   rsa2048 2013-06-19 [SC]
+          59CA F0E9 6F23 F537 4794  5FD4 FE33 4887 7809 386C
+    uid           [ unknown] Adrian Gallagher &lt;thrasher@addictionsoftware.com&gt;
+    sub   rsa2048 2013-06-19 [E]
+
+    pub   rsa4096 2016-01-09 [SC] [expires: 2026-01-09]
+          C092 1846 FED0 BF4C F28B  E1D7 3B2A 6315 CD51 A673
+    uid           [ unknown] Loshan T (A.K.A. losh11) &lt;loshan1212@gmail.com&gt;
+    sub   rsa4096 2016-01-09 [E] [expires: 2026-01-10]
+</pre>
+
+<p><strong>Verify signature of downloaded file</strong></p>
+<pre>gpg --verify Electrum-LTC-2.9.3.1.tar.gz.asc Electrum-LTC-2.9.3.1.tar.gz</pre>
+
+<p>The output should say “Good signature”:</p>
+
+<pre>    gpg: Signature made Thu 17 Aug 2017 10:59:17 AM PDT
+    gpg:                using RSA key 6FC4C9F7F1BE8FEA
+    gpg: Good signature from &quot;pooler &lt;pooler@litecoinpool.org&gt;&quot; [unknown]
+    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg:          There is no indication that the signature belongs to the owner.
+    Primary key fingerprint: CAE1 092A D355 3FFD 21C0  5DE3 6FC4 C9F7 F1BE 8FEA
+</pre>
+
+<p>Notice that there is a warning because you haven't assigned a trust index to this person.</p>
+
+<pre>    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg: There is no indication that the signature belongs to the owner.
+</pre>
+
+<p>This means that GnuPG verified that the key made that signature, but it's up to you to decide if that key really belongs to the developer. The best method is to meet the developer in person and exchange key fingerprints.</p>
+
+<p><em>Thanks to <a href="https://github.com/7022Andre">Andre Mueller</a> for writing these instructions.</em></p>
+
+<hr>
+
+<p><a href="index.html">« Back to the homepage</a></p>
+
+</div>
+</body>
+</html>
