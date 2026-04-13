@@ -34,6 +34,15 @@
 <p>Electrum-LTC is a community-maintained port of <a href="https://electrum.org/">Electrum</a>, the Bitcoin wallet, to <a href="https://litecoin.org/">Litecoin</a>. It is not an official product of Electrum Technologies GmbH, which does not support it.</p>
 </div>
 
+<div class="alert alert-danger" id="notice">
+<p class="text-center"><strong>IMPORTANT NOTICE</strong> (April 2026)</p>
+<p>The 4.7.2 release fixes Ledger.
+
+What has happened is that Ledger is now restricting the Litecoin app from requesting pubkeys outside of the regular HD paths <code>m/44'/2'</code>, <code>m/84'/2'</code> and so on. This is a problem as Electrum requests <code>m/0'</code> for the root fingerprint and <code>m/4541509'/1112098098'</code> for the storage encryption key. The fix is to request <code>m/44'/2'/0'</code> and <code>m/44'/2'/4541509'/1112098098'</code> respectively. Unfortunately this changes the meaning of the root fingerprint and prevents existing Ledger wallet files from being opened (if encrypted).
+
+The upshot is that all Ledger users need to recreate their wallet files.</p>
+</div>
+
 <div class="row">
 <h2 class="text-center" id="download">Downloads <i class="fa fa-download fa-2x" style="color:#428bca;"></i></h2>
 <p class="text-center"><i class="fa fa-exclamation-triangle"></i>&nbsp; Always verify the digital signatures of the files you download! (<a href="verifying-signatures.html">instructions</a>) &nbsp;<i class="fa fa-exclamation-triangle"></i></p>
